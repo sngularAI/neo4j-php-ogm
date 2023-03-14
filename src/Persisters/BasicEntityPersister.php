@@ -291,8 +291,9 @@ class BasicEntityPersister
         $relPattern = sprintf('%s-[:`%s`]-%s', $isIncoming, $relationshipType, $isOutgoing);
 
         $cypher  = 'MATCH (n) WHERE id(n) = $id ';
-        $cypher .= 'RETURN EXISTS((n)'.$relPattern.'('.$targetClassLabel.')) ';
+        $cypher .= 'AND EXISTS((n)'.$relPattern.'('.$targetClassLabel.')) ';
         $cypher .= 'AS '.$alias;
+        $cypher .= 'RETURN n';
 
         return Statement::create($cypher, ['id' => $sourceEntityId]);
 
