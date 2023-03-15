@@ -293,6 +293,7 @@ class BasicEntityPersister
         $cypher  = 'MATCH (n) WHERE id(n) = $id ';
         $cypher .= 'RETURN size([p=(n)'.$relPattern.'('.$targetClassLabel.') | p]) ';
         $cypher .= 'AS '.$alias;
+        
 
         return Statement::create($cypher, ['id' => $sourceEntityId]);
 
