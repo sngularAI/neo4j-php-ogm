@@ -291,7 +291,7 @@ class BasicEntityPersister
         $relPattern = sprintf('%s-[:`%s`]-%s', $isIncoming, $relationshipType, $isOutgoing);
 
         $cypher  = 'MATCH (n) WHERE id(n) = $id ';
-        $cypher .= 'RETURN size([p=(n)'.$relPattern.'('.$targetClassLabel.') | p]) ';
+        $cypher .= 'RETURN size((n)'.$relPattern.'('.$targetClassLabel.')) ';
         $cypher .= 'AS '.$alias;
 
 
